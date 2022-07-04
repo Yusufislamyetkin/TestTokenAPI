@@ -1,4 +1,5 @@
-﻿using SharedLibrary.Dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using SharedLibrary.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,9 +83,10 @@ namespace UdemeyAuthServer.Service.Services
             }
         }
 
-        public Task<Response<IEnumerable<TDto>>> Where(Expression<Func<T, bool>> filter)
+        public async Task<Response<IEnumerable<TDto>>> Where(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            var list = _genericRepository.Where(filter);
+            return Response<IEnumerable<TDto>>.Success(ObjectMapper.Mapper.Map<IEnumerable<TDto>>(await list.ToListAsync()), 200);
         }
     }
 }
