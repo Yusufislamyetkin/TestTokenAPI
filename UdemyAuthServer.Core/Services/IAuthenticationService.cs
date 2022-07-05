@@ -13,7 +13,7 @@ namespace UdemyAuthServer.Core.Services
         Task<Response<TokenDto>> CreateTokenAsync(LoginDto loginDto); // Kullanıcıya Access Token Ve Refresh Token ile dönecek.LoginDto dan alacağı email ve şifre  verisi ile.
         Task<Response<TokenDto>> CreateTokenByRefreshTokenAsync(string refreshToken);
         Task<Response<NoDataDto>> RevokeRefreshToken(string refreshToken);
-        Task<Response<ClientTokenDto>> CreateTokenByClient(ClientLoginDto clientLoginDto);
+        Response<ClientTokenDto> CreateTokenByClient(ClientLoginDto clientLoginDto);
 
 
     }
